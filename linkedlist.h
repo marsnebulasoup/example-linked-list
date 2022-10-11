@@ -20,6 +20,9 @@ class LinkedList
 private:
   Node *head;
 
+  void printListForwards(Node *);
+  void printListReverse(Node *);
+
 public:
   LinkedList();
   ~LinkedList();
