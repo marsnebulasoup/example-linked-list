@@ -105,9 +105,29 @@ bool LinkedList::deleteNode(int id)
   return wasDeleted;
 }
 
-bool LinkedList::getNode(int, Data *)
+bool LinkedList::getNode(int id, Data *data)
 {
-  return true;
+  bool wasFound = false;
+  if (id > 0 && data)
+  {
+    Node *current = head;
+    while (current && current->next && current->data.id < id)
+    {
+      current = current->next;
+    }
+    if (current && current->data.id == id)
+    {
+      data->id = current->data.id;
+      data->data = current->data.data;
+      wasFound = true;
+    }
+    else
+    {
+      data->id = -1;
+      data->data = "";
+    }
+  }
+  return wasFound;
 }
 
 void LinkedList::printListForwards(Node *current)
