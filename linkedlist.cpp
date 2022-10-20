@@ -42,6 +42,7 @@ bool LinkedList::addHead(int id, string *data)
   Node *newNode = new Node;
   Data *newData = new Data{id, *data};
   newNode->data = *newData;
+
   head = newNode;
   head->prev = head->next = NULL;
   return true;
@@ -55,7 +56,8 @@ bool LinkedList::addBefore(Node *current, int id, string *data)
     Node *newNode = new Node;
     Data *newData = new Data{id, *data};
     newNode->data = *newData;
-    (current->prev ? current->prev->next : head) = newNode;
+
+    (current->prev ? current->prev->next : head) = newNode; // link the new node to the previous node; if no previous node, then the head.
     newNode->prev = current->prev;
     newNode->next = current;
     current->prev = newNode;
