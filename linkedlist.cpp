@@ -8,10 +8,12 @@ A example implementation of a linked list.
 LinkedList::LinkedList()
 {
   head = NULL;
-  Node *newData, *position;
+}
 
-  for (int i = 0; i < 5; i++)
-  {
+LinkedList::~LinkedList()
+{
+  clearList();
+}
 
 bool LinkedList::addNode(int id, string *data)
 {
