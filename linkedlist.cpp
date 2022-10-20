@@ -182,7 +182,6 @@ bool LinkedList::clearList()
     while (current->next)
     {
       current = current->next;
-      cout << "deleting " << current->prev->data.id << endl;
       delete current->prev;
     }
     delete current;
