@@ -83,7 +83,26 @@ bool LinkedList::addTail(Node *current, int id, string *data)
 
 bool LinkedList::deleteNode(int id)
 {
-  return true;
+  bool wasDeleted = false;
+  if (id > 0)
+  {
+    Node *current = head;
+    while (current && current->next && current->data.id < id)
+    {
+      current = current->next;
+    }
+    if (current && current->data.id == id)
+    {
+      (current->prev ? current->prev->next : head) = current->next; // link the previous node to the next if there is a previous node; otherwise link the head to it
+      if (current->next)
+      {
+        current->next->prev = current->prev;
+      }
+      delete current;
+      wasDeleted = true;
+    }
+  }
+  return wasDeleted;
 }
 
 bool LinkedList::getNode(int, Data *)
