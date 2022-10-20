@@ -23,6 +23,10 @@ private:
   void printListForwards(Node *);
   void printListReverse(Node *);
 
+  bool addHead(int, string *);
+  bool addTail(Node *, int, string *);
+  bool addBefore(Node *, int, string *);
+
 public:
   LinkedList();
   ~LinkedList();

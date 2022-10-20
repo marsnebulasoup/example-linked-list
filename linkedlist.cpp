@@ -13,34 +13,70 @@ LinkedList::LinkedList()
   for (int i = 0; i < 5; i++)
   {
 
-    // create Data
-    newData = new Node;
-    newData->data = Data{i, "random data"};
-
-    // attached it
-    if (head == NULL)
-    {
-      // it's the first Data
-      head = newData;
-      position = head;
-    }
-    else
-    {
-      // not the first Data
-      position->next = newData;
-      position = newData;
-    }
-  }
-}
-
-LinkedList::~LinkedList()
-{
-  clearList();
-}
-
 bool LinkedList::addNode(int id, string *data)
 {
+  bool wasAdded = false;
+  if (id > 0 && data->length() > 0)
+  {
+    Node *current = head;
+    while (current && current->next && current->data.id < id)
+    {
+      current = current->next;
+    }
+    if (current && id != current->data.id) // list is not empty (and id not already in list)
+    {
+      wasAdded = id < current->data.id ? addBefore(current, id, data) : addTail(current, id, data);
+    }
+    else if (!current) // list is empty
+    {
+      wasAdded = addHead(id, data);
+    }
+  }
+  return wasAdded;
+}
+
+bool LinkedList::addHead(int id, string *data)
+{
+  Node *newNode = new Node;
+  Data *newData = new Data{id, *data};
+  newNode->data = *newData;
+  head = newNode;
+  head->prev = head->next = NULL;
   return true;
+}
+
+bool LinkedList::addBefore(Node *current, int id, string *data)
+{
+  bool wasAdded = false;
+  if (current)
+  {
+    Node *newNode = new Node;
+    Data *newData = new Data{id, *data};
+    newNode->data = *newData;
+    (current->prev ? current->prev->next : head) = newNode;
+    newNode->prev = current->prev;
+    newNode->next = current;
+    current->prev = newNode;
+    wasAdded = true;
+  }
+  return wasAdded;
+}
+
+bool LinkedList::addTail(Node *current, int id, string *data)
+{
+  bool wasAdded = false;
+  if (current)
+  {
+    Node *newNode = new Node;
+    Data *newData = new Data{id, *data};
+    newNode->data = *newData;
+
+    newNode->prev = current;
+    newNode->next = NULL;
+    current->next = newNode;
+    wasAdded = true;
+  }
+  return wasAdded;
 }
 
 bool LinkedList::deleteNode(int id)
