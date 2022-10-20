@@ -156,7 +156,18 @@ void LinkedList::printList(bool reverse)
 
 int LinkedList::getCount()
 {
-  return 0;
+  int count = 0;
+  if (head)
+  {
+    Node *current = head;
+    count++;
+    while (current->next)
+    {
+      count++;
+      current = current->next;
+    }
+  }
+  return count;
 }
 
 bool LinkedList::clearList()
