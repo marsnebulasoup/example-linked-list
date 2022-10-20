@@ -190,5 +190,18 @@ bool LinkedList::clearList()
 
 bool LinkedList::exists(int id)
 {
-  return true;
+  bool wasFound = false;
+  if (id > 0)
+  {
+    Node *current = head;
+    while (current && current->next && current->data.id < id)
+    {
+      current = current->next;
+    }
+    if (current && current->data.id == id)
+    {
+      wasFound = true;
+    }
+  }
+  return wasFound;
 }
