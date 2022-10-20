@@ -172,7 +172,20 @@ int LinkedList::getCount()
 
 bool LinkedList::clearList()
 {
-  return true;
+  bool wasCleared = false;
+  if (head)
+  {
+    Node *current = head;
+    while (current->next)
+    {
+      current = current->next;
+      cout << "deleting " << current->prev->data.id << endl;
+      delete current->prev;
+    }
+    delete current;
+    head = NULL;
+  }
+  return wasCleared;
 }
 
 bool LinkedList::exists(int id)
