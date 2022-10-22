@@ -192,6 +192,7 @@ bool LinkedList::clearList()
     }
     delete current;
     head = NULL;
+    wasCleared = true;
   }
   return wasCleared;
 }
