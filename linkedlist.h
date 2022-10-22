@@ -27,6 +27,8 @@ private:
   bool addTail(Node *, int, string *);
   bool addBefore(Node *, int, string *);
 
+  Node* createNode(int, string*);
+
 public:
   LinkedList();
   ~LinkedList();

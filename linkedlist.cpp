@@ -39,24 +39,21 @@ bool LinkedList::addNode(int id, string *data)
 
 bool LinkedList::addHead(int id, string *data)
 {
-  Node *newNode = new Node;
-  Data *newData = new Data{id, *data};
-  newNode->data = *newData;
-
-  head = newNode;
-  head->prev = head->next = NULL;
+  Node *newNode = createNode(id, data);
+  if (newNode)
+  {
+    head = newNode;
+    head->prev = head->next = NULL;
+  }
   return true;
 }
 
 bool LinkedList::addBefore(Node *current, int id, string *data)
 {
   bool wasAdded = false;
-  if (current)
+  Node *newNode;
+  if (current && (newNode = createNode(id, data)))
   {
-    Node *newNode = new Node;
-    Data *newData = new Data{id, *data};
-    newNode->data = *newData;
-
     (current->prev ? current->prev->next : head) = newNode; // link the new node to the previous node; if no previous node, then the head.
     newNode->prev = current->prev;
     newNode->next = current;
@@ -69,12 +66,9 @@ bool LinkedList::addBefore(Node *current, int id, string *data)
 bool LinkedList::addTail(Node *current, int id, string *data)
 {
   bool wasAdded = false;
-  if (current)
+  Node *newNode;
+  if (current && (newNode = createNode(id, data)))
   {
-    Node *newNode = new Node;
-    Data *newData = new Data{id, *data};
-    newNode->data = *newData;
-
     newNode->prev = current;
     newNode->next = NULL;
     current->next = newNode;
@@ -130,6 +124,18 @@ bool LinkedList::getNode(int id, Data *data)
     }
   }
   return wasFound;
+}
+
+Node *LinkedList::createNode(int id, string *data)
+{
+  Node *newNode = NULL;
+  if (id > 0 && data->length() > 0)
+  {
+    newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+  }
+  return newNode;
 }
 
 void LinkedList::printListForwards(Node *current)
