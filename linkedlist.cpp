@@ -1,8 +1,3 @@
-/*********************
-Name: Kevin Bryniak
-Assignment: Linked List
-A example implementation of a linked list.
-**********************/
 #include "linkedlist.h"
 
 LinkedList::LinkedList()
