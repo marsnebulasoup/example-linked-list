@@ -1,11 +1,3 @@
-/* 
- * File: testdata.h
- * Author: Alex Katrompas
- * 
- * DO NOT MODIFY THIS FILE
- * LEAVE THIS COMMENT HEADER HERE
- */
-
 #ifndef TESTDATA_H
 #define TESTDATA_H
 
