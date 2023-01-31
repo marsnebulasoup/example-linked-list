@@ -1,9 +1,3 @@
-/*********************
-Name: Kevin Bryniak
-Assignment: Linked List
-A example implementation of a linked list.
-**********************/
-
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 
